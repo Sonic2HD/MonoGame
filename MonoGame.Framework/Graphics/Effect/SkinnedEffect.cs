@@ -20,7 +20,7 @@ namespace Microsoft.Xna.Framework.Graphics
     /// </summary>
     public class SkinnedEffect : Effect, IEffectMatrices, IEffectLights, IEffectFog, IEffectBones
     {
-        public const int MaxBones = 72;
+        public const int MaxBones = 1024;
         
         #region Effect Parameters
 
