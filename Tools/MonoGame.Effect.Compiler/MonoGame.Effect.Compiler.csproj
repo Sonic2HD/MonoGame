@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFramework>net5.0</TargetFramework>
+    <TargetFramework>netstandard2.0</TargetFramework>
     <Description>The MonoGame Framework Effect Compiler (MGFXC) command line tool is used to compile shaders.</Description>
     <BaseOutputPath>..\..\Artifacts\MonoGame.Effect.Compiler</BaseOutputPath>
     <PackAsTool>true</PackAsTool>
@@ -76,6 +76,10 @@
     <None Include="..\..\ThirdParty\Dependencies\MojoShader\Windows\libmojoshader_64.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="System.Numerics.Vectors" Version="4.5.0" />
   </ItemGroup>
 
   <ItemGroup>

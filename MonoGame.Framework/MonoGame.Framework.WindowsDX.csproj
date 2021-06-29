@@ -1,7 +1,7 @@
-﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>net452</TargetFrameworks>
+    <TargetFrameworks>net48</TargetFrameworks>
     <DefineConstants>WINDOWS;XNADESIGNPROVIDED;STBSHARP_INTERNAL</DefineConstants>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <UseWindowsForms>true</UseWindowsForms>
@@ -59,10 +59,15 @@
   <ItemGroup>
     <Compile Include="..\ThirdParty\StbImageSharp\src\**\*.cs" LinkBase="Utilities\StbImageSharp" />
     <Compile Include="..\ThirdParty\StbImageWriteSharp\src\**\*.cs" LinkBase="Utilities\StbImageWriteSharp" />
+  </ItemGroup> 
+
+  <ItemGroup>
+    <None Remove="MonoGame.Framework.WindowsUniversal.targets" />
   </ItemGroup>
 
   <ItemGroup>
     <Content Include="MonoGame.Framework.WindowsDX.targets" PackagePath="build" />
+    <Content Include="MonoGame.Framework.WindowsUniversal.targets" />
   </ItemGroup>
 
   <PropertyGroup>
@@ -89,6 +94,10 @@
 
   <ItemGroup Condition=" '$(TargetFramework)' == 'net452' ">
     <PackageReference Include="System.Numerics.Vectors" Version="4.5.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   </ItemGroup>
 
   <Import Project="Platform\DirectX.targets" />

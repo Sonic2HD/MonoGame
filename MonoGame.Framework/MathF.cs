@@ -5,7 +5,7 @@
 namespace System
 {
 #if (!NETCOREAPP && !NETSTANDARD2_1) || NETCOREAPP1_0 || NETCOREAPP1_1
-    internal static class MathF
+    internal static class Mathf
     {
         public const float E = (float)Math.E;
         public const float PI = (float)Math.PI;

@@ -1,11 +1,11 @@
-﻿<Project Sdk="MSBuild.Sdk.Extras">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFrameworks>uap10.0</TargetFrameworks>
     <!-- TODO: NET45 is here for reflection API (Utilities\ReflectionHelpers), but does not make sense semantically -->
     <DefineConstants>WINDOWS_UAP;DIRECTX11_1;NET45;STBSHARP_INTERNAL</DefineConstants>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-    <TargetPlatformVersion>10.0.18362.0</TargetPlatformVersion>
+    <TargetPlatformVersion>10.0.16299.0</TargetPlatformVersion>
     <TargetPlatformMinVersion>10.0.16299.0</TargetPlatformMinVersion>
     <Description>The MonoGame runtime for UWP (Universal Windows Platform) which supports Windows 10 and Xbox One.</Description>
     <PackageTags>monogame;.net core;core;.net standard;standard;uwp</PackageTags>
@@ -13,6 +13,23 @@
     <SharpDXVersion>4.0.1</SharpDXVersion>
     <AppendTargetFrameworkToOutputPath>False</AppendTargetFrameworkToOutputPath>
   </PropertyGroup>
+
+  <PropertyGroup Condition="'$(TargetFramework)' == 'uap10.0'">
+    <CopyLocalLockFileAssemblies>false</CopyLocalLockFileAssemblies>
+    <NugetTargetMoniker>UAP,Version=v10.0</NugetTargetMoniker>
+    <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
+    <TargetPlatformVersion>10.0.16299.0</TargetPlatformVersion>
+    <TargetPlatformMinVersion>10.0.16299.0</TargetPlatformMinVersion>
+    <TargetFrameworkIdentifier>.NETCore</TargetFrameworkIdentifier>
+    <TargetFrameworkVersion>v5.0</TargetFrameworkVersion>
+    <LanguageTargets>$(MSBuildExtensionsPath)\Microsoft\WindowsXaml\v$(VisualStudioVersion)\Microsoft.Windows.UI.Xaml.CSharp.targets</LanguageTargets>
+    <ResolveAssemblyWarnOrErrorOnTargetArchitectureMismatch>None</ResolveAssemblyWarnOrErrorOnTargetArchitectureMismatch>
+  </PropertyGroup>
+  <ItemGroup Condition=" '$(TargetFramework)' == 'uap10.0' ">
+    <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform " Version="5.2.2" />
+  </ItemGroup>
+
+
 
   <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|uap10.0|AnyCPU'">
     <DebugType>portable</DebugType>
@@ -81,16 +98,16 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="MonoGame.Framework.WindowsUniversal.targets" PackagePath="build;lib\uap10.0\MonoGame.Framework" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="SharpDX" Version="$(SharpDXVersion)" />
     <PackageReference Include="SharpDX.Direct2D1" Version="$(SharpDXVersion)" />
     <PackageReference Include="SharpDX.Direct3D11" Version="$(SharpDXVersion)" />
     <PackageReference Include="SharpDX.DXGI" Version="$(SharpDXVersion)" />
     <PackageReference Include="SharpDX.MediaFoundation" Version="$(SharpDXVersion)" />
     <PackageReference Include="SharpDX.XAudio2" Version="$(SharpDXVersion)" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="MonoGame.Framework.WindowsUniversal.targets" PackagePath="build;lib\uap10.0\MonoGame.Framework" />
   </ItemGroup>
 
   <Import Project="Platform\DirectX.targets" />
